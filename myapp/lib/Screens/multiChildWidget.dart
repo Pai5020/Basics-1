@@ -10,14 +10,14 @@ class Multichildwidget extends StatelessWidget {
         color: Colors.grey,
         child: Column(children: <Widget>[
           Container(
-              width: 250,
+              width: 100,
               height: 100,
-              color: Colors.green,
+              color: Colors.blue,
               padding: EdgeInsets.all(2),
               margin: EdgeInsets.all(100),
               child: Center(
                 child: Text(
-                  "COlumn MultiWidget",
+                  "COlumn Multi Child Widget",
                   style: TextStyle(
                     fontSize: 12.0, // Set the font size here
                   ),
