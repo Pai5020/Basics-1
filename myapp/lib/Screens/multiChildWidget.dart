@@ -28,7 +28,17 @@ class Multichildwidget extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text("Home")))
+                  child: Text("Home"))),
+          SizedBox(
+            height: 10,
+          ),
+          OutlinedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/alignWidget');
+              },
+              child: Text(
+                "Align Widget",
+              )),
         ]));
   }
 }

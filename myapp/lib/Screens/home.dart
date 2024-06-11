@@ -31,7 +31,7 @@ class HomeButton extends StatelessWidget {
                     "Basic Widget",
                   )),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               OutlinedButton(
                   onPressed: () {
@@ -41,7 +41,7 @@ class HomeButton extends StatelessWidget {
                     "multi ChildWidget",
                   )),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               OutlinedButton(
                   onPressed: () {
@@ -51,7 +51,7 @@ class HomeButton extends StatelessWidget {
                     "Image Widget",
                   )),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               OutlinedButton(
                   onPressed: () {
@@ -61,7 +61,7 @@ class HomeButton extends StatelessWidget {
                     "Text Widget",
                   )),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               OutlinedButton(
                   onPressed: () {
@@ -69,7 +69,37 @@ class HomeButton extends StatelessWidget {
                   },
                   child: Text(
                     "Text Field Widget",
-                  ))
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/listViewWidget');
+                  },
+                  child: Text(
+                    "List View Widget",
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/gridViewWidget');
+                  },
+                  child: Text(
+                    "Grid View Widget",
+                  )),
+              SizedBox(
+                height: 10,
+              ),
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/stackWidget');
+                  },
+                  child: Text(
+                    "Stack Widget",
+                  )),
             ],
           ),
         ));
