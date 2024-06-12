@@ -39,6 +39,16 @@ class Multichildwidget extends StatelessWidget {
               child: Text(
                 "Align Widget",
               )),
+          SizedBox(
+            height: 10,
+          ),
+          OutlinedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/factoryWidget');
+              },
+              child: Text(
+                "Refactoring Widget",
+              )),
         ]));
   }
 }

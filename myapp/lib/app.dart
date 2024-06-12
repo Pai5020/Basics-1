@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/Screens/alignWidget.dart';
+import 'package:myapp/Screens/factory.dart';
 import 'package:myapp/Screens/gridViewWidget.dart';
 import 'package:myapp/Screens/imageWidget.dart';
 import 'package:myapp/Screens/listViewWidget.dart';
@@ -25,7 +26,8 @@ class App extends StatelessWidget {
         '/listViewWidget': (context) => ListviewWidget(),
         '/gridViewWidget': (context) => Gridviewwidget(),
         '/stackWidget': (context) => Stackwidget(),
-        '/alignWidget': (context) => Alignwidget()
+        '/alignWidget': (context) => Alignwidget(),
+        '/factoryWidget': (context) => Factorywidget(),
       },
     );
   }
