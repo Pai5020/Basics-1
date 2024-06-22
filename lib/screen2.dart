@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 
 class Screen2 extends StatelessWidget {
-  final String name;
-  const Screen2({super.key, required this.name});
+  const Screen2({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /* appBar: AppBar(
         backgroundColor: Colors.teal,
         title: Text(name),
-      ),
+      ),*/
       body: SafeArea(
           child: Column(children: [
-        ElevatedButton(
+        /* ElevatedButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           child: Text(name),
-        )
+        )*/
+        Text('Value Found'),
       ])),
     );
   }
