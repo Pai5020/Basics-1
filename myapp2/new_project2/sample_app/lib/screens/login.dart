@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/screens/home.dart';
 
-class ScreenLogin extends StatelessWidget {
+class ScreenLogin extends StatefulWidget {
   ScreenLogin({super.key});
+
+  @override
+  State<ScreenLogin> createState() => _ScreenLoginState();
+}
+
+class _ScreenLoginState extends State<ScreenLogin> {
   final _usernameController = TextEditingController();
+
   final _passwordController = TextEditingController();
+
+  bool _isDataMatched = true;
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -11,38 +23,61 @@ class ScreenLogin extends StatelessWidget {
         body: SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(15.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextFormField(
-              controller: _usernameController,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Username',
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              TextFormField(
+                controller: _usernameController,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Username',
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Password',
+              SizedBox(
+                height: 20,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            ElevatedButton.icon(
-              onPressed: () {
-                checkLogin(context);
-              },
-              icon: const Icon(Icons.check),
-              label: const Text('Login'),
-            )
-          ],
+              TextFormField(
+                controller: _passwordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Password',
+                ),
+                validator: (_) {
+                  if (_isDataMatched) {
+                    return null;
+                  } else {
+                    return 'Error';
+                  }
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Visibility(
+                    visible: !_isDataMatched,
+                    child: Text(
+                      'username psswd does not match',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      _formKey.currentState!.validate();
+                      checkLogin(context);
+                    },
+                    icon: const Icon(Icons.check),
+                    label: const Text('Login'),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     ));
@@ -54,6 +89,8 @@ class ScreenLogin extends StatelessWidget {
 
     if (_username == _password) {
       //goto home
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => ScreenHome()));
     } else {
       final _errorMessage = 'Username password does not match';
 
@@ -82,6 +119,10 @@ class ScreenLogin extends StatelessWidget {
           });
 
       //Show Text
+
+      setState(() {
+        _isDataMatched = false;
+      });
     }
   }
 }
