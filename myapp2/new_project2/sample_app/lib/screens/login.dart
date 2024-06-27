@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:sample_app/myapp.dart';
 import 'package:sample_app/screens/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ScreenLogin extends StatefulWidget {
   ScreenLogin({super.key});
@@ -83,11 +85,13 @@ class _ScreenLoginState extends State<ScreenLogin> {
     ));
   }
 
-  void checkLogin(BuildContext context) {
+  void checkLogin(BuildContext context) async {
     final _username = _usernameController.text;
     final _password = _passwordController.text;
 
     if (_username == _password) {
+      final _sharedPrefs = await SharedPreferences.getInstance();
+      _sharedPrefs.setBool(SAVE_KEY_NAME, true);
       //goto home
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => ScreenHome()));
