@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:sample_app2/screen_home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,12 +33,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: ScreenHome(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
+/*class MyHomePage extends StatelessWidget {
   ValueNotifier<int> _counter = ValueNotifier(0);
 
   void _incrementCounter() {
@@ -117,4 +118,4 @@ class MyHomePage extends StatelessWidget {
       },
     );
   }
-}
+}*/
