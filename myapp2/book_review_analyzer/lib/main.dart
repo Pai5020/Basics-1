@@ -1,3 +1,4 @@
+import 'package:book_review_analyzer/newpage.dart';
 import 'package:book_review_analyzer/screens/login.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.grey,
       ),
-      home: Login(),
+      home: Newpage(),
     );
   }
 }

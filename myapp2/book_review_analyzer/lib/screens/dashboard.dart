@@ -11,6 +11,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<String> _books = [];
+  List<String> _bookAuthors = [];
 
   @override
   void initState() {
@@ -22,63 +23,81 @@ class _DashboardState extends State<Dashboard> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
       _books = prefs.getStringList('books') ?? [];
+      _bookAuthors = prefs.getStringList('bookAuthors') ?? [];
     });
   }
 
-  _addBook(String book) async {
+  _addBook(String book, String author) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _books.add(book);
+    _bookAuthors.add(author);
     await prefs.setStringList('books', _books);
+    await prefs.setStringList('bookAuthors', _bookAuthors);
     setState(() {});
   }
 
   _showAddBookDialogue() {
     final TextEditingController _bookController = TextEditingController();
-
+    final TextEditingController _authorController = TextEditingController();
     showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: TextField(
-              controller: _bookController,
-              decoration: InputDecoration(labelText: 'Book name'),
-            ),
-            actions: [
-              TextButton(
-                child: Text('cancel'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Book'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: _bookController,
+                decoration: InputDecoration(labelText: 'Book Name'),
               ),
-              TextButton(
-                  onPressed: () {
-                    if (_bookController.text.isNotEmpty) {
-                      _addBook(_bookController.text);
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: Text('add'))
+              TextField(
+                controller: _authorController,
+                decoration: InputDecoration(labelText: 'Author'),
+              ),
             ],
-          );
-        });
+          ),
+          actions: [
+            TextButton(
+              child: Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Add'),
+              onPressed: () {
+                if (_bookController.text.isNotEmpty &&
+                    _authorController.text.isNotEmpty) {
+                  _addBook(_bookController.text, _authorController.text);
+                  Navigator.of(context).pop();
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  _logout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isLoggedIn', false);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Login()),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'DASHBOARD',
-        ),
+        title: Text('DASHBOARD'),
         actions: [
           IconButton(
             icon: Icon(Icons.logout),
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => Login()),
-              );
-            },
+            onPressed: _logout,
           )
         ],
       ),
@@ -87,6 +106,7 @@ class _DashboardState extends State<Dashboard> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(_books[index]),
+            subtitle: Text(_bookAuthors[index]),
           );
         },
       ),
