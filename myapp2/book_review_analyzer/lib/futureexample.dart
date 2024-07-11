@@ -8,9 +8,7 @@ class FutureExample extends StatefulWidget {
 class _FutureExampleState extends State<FutureExample> {
   String _message = 'Press the button to fetch data';
 
-  // Simulate a network request
   Future<String> _fetchData() async {
-    // Simulate a delay
     await Future.delayed(Duration(seconds: 3));
     return 'Data fetched successfully!';
   }
@@ -20,10 +18,8 @@ class _FutureExampleState extends State<FutureExample> {
       _message = 'Fetching data...';
     });
 
-    // Call the future function and wait for the result
     String data = await _fetchData();
 
-    // Update the state with the result
     setState(() {
       _message = data;
     });
