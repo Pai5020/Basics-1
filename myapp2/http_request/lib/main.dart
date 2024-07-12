@@ -38,17 +38,31 @@ class MyApp extends StatelessWidget {
 }
 
 class ScreenHome extends StatelessWidget {
-  const ScreenHome({super.key});
+  ScreenHome({super.key});
+
+  final _numberInputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
-      child: ElevatedButton(
-          onPressed: () {
-            getNumberFact(number: 90);
-          },
-          child: Text("Get result")),
+        body: SafeArea(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextFormField(
+              controller: _numberInputController,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(), hintText: 'Number')),
+          ElevatedButton(
+            onPressed: () {
+              final _number = _numberInputController.text;
+              getNumberFact(number: _number);
+            },
+            child: Text('Get Result'),
+          ),
+        ],
+      ),
     ));
   }
 }
