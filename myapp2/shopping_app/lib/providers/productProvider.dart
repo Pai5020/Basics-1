@@ -8,7 +8,7 @@ class ProductProvider with ChangeNotifier {
         name: 'Kurti ',
         price: 29.99,
         imageUrl:
-            'https://img.freepik.com/free-photo/young-woman-beautiful-yellow-dress_1303-17537.jpg'),
+            'https://images.unsplash.com/photo-1667665970118-f55705003914?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8a3VydGl8ZW58MHx8MHx8fDA%3D'),
     Product(
         name: 'Shirt',
         price: 59.99,
@@ -18,7 +18,7 @@ class ProductProvider with ChangeNotifier {
         name: 'ALine Dress',
         price: 19.99,
         imageUrl:
-            'https://img.freepik.com/free-photo/young-woman-getting-ready-wedding_23-2149329163.jpg?size=626&ext=jpg&ga=GA1.1.610102206.1717945238&semt=ais_user'),
+            'https://images.pexels.com/photos/18172215/pexels-photo-18172215/free-photo-of-model-in-red-a-line-midi-dress-in-front-of-an-old-wooden-door.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'),
   ];
 
   List<Product> get products => _products;
